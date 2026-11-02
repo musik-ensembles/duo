@@ -1,0 +1,251 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Atem &amp; Saite</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: helles, freundliches Konzertprogramm, zentrierter Titel; darunter sechs Saiten mit einem Atemzeichen. Bewusst nur ein helles Farbschema. */
+:root{
+  --bg:#fdfaf8;
+  --surface:#f8efec;
+  --ink:#2b2326;
+  --muted:#7d7074;
+  --line:#ecdfda;
+  --accent:#b2566c;      /* Altrosa */
+  --brass:#b48a45;       /* Gold */
+  --display:"Cormorant Garamond","Garamond","Baskerville",Georgia,serif;
+  --body:"Jost","Futura","Avenir Next","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;font-size:1.0625rem;line-height:1.65}
+.wrap{max-width:68rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Hero */
+.hero{border-bottom:1px solid var(--line)}
+.hero{background:linear-gradient(180deg,var(--surface),var(--bg))}
+.hero .wrap{padding-block:clamp(4rem,10vw,7.5rem) clamp(3rem,7vw,5rem);display:flex;flex-direction:column;align-items:center;text-align:center}
+.eyebrow{font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:500;margin:0 0 1.75rem}
+h1{font-family:var(--display);font-weight:300;font-size:clamp(3.6rem,13vw,9.5rem);line-height:.9;margin:0;letter-spacing:.01em}
+h1 .atem{font-style:italic;font-weight:300;color:var(--brass)}
+h1 .amp{font-style:italic;font-weight:300;font-size:.55em;color:var(--accent);margin:0 .12em;vertical-align:.12em}
+h1 .saite{font-weight:300}
+.staff{position:relative;width:min(36rem,100%);margin:2rem 0 0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.staff canvas{display:block;width:100%;height:7rem}
+.staff .breath{position:absolute;right:16%;top:.4rem;font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--accent);font-weight:500}
+h1 .atem .l{display:inline-block}
+@media (prefers-reduced-motion:no-preference){
+  h1 .atem .l{animation:blow 1.4s cubic-bezier(.16,.8,.24,1) both;animation-delay:calc(.15s + var(--i) * 110ms)}
+  @keyframes blow{
+    0%{opacity:0;transform:translateX(-.7em) skewX(-14deg);filter:blur(10px)}
+    55%{opacity:.85;filter:blur(2px)}
+    100%{opacity:1;transform:none;filter:none}
+  }
+  h1 .amp,h1 .saite{animation:fade 1s ease-out .55s both}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .staff .breath{animation:puff 1.2s cubic-bezier(.16,.8,.24,1) .9s both}
+  @keyframes puff{0%{opacity:0;transform:translate(-1.2em,.3em) scale(.6);filter:blur(6px)}100%{opacity:1;transform:none;filter:none}}
+}
+.date{margin:2rem 0 0;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.lede{max-width:34rem;margin:1rem 0 0;font-size:1.12rem;color:var(--muted)}
+
+/* Besetzung */
+.castband{border-bottom:1px solid var(--line)}
+.cast{margin:0 auto;padding-block:1.4rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .6rem}
+.instr{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.name{font-family:var(--display);font-size:1.7rem;line-height:1.1;font-style:italic}
+.amp2{font-family:var(--display);font-style:italic;color:var(--brass);font-size:1.3rem;margin-inline:.4rem}
+.voice{font-size:.95rem;color:var(--muted);max-width:26rem}
+
+/* Programm */
+section.program{padding-block:clamp(3rem,7vw,5rem)}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 2rem;margin-bottom:2rem}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5vw,3.2rem);margin:0;letter-spacing:-.01em}
+.total{font-size:.85rem;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+ol.pieces{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.piece{display:grid;grid-template-columns:3.2rem minmax(0,1fr) auto;gap:.25rem 1.25rem;padding-block:1.6rem;border-bottom:1px solid var(--line);align-items:baseline}
+.no{font-family:var(--display);font-style:italic;color:var(--brass);font-size:1.4rem;font-variant-numeric:tabular-nums}
+.composer{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.title{font-family:var(--display);font-size:clamp(1.55rem,3.6vw,2.25rem);line-height:1.15;margin:.2rem 0 .5rem;text-wrap:balance}
+.title i{font-weight:400}
+.note{margin:0;color:var(--muted);max-width:40rem;font-size:.98rem}
+.meta{text-align:right;font-size:.82rem;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;line-height:1.5}
+.meta b{display:block;font-weight:500;color:var(--ink)}
+
+/* Termin */
+.when{background:var(--surface);border-top:1px solid var(--line)}
+.when .wrap{padding-block:clamp(2.5rem,6vw,4rem);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem 2rem}
+.when dt{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.35rem}
+.when dd{margin:0;font-family:var(--display);font-size:1.5rem;font-style:italic}
+.when dd.tbd{color:var(--muted)}
+footer .wrap{padding-block:2rem;font-size:.85rem;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem}
+
+@media (max-width:640px){
+  .piece{grid-template-columns:2.2rem minmax(0,1fr)}
+  .meta{grid-column:2;text-align:left;display:flex;gap:1rem}
+  .meta b{display:inline}
+  .when .wrap{grid-template-columns:1fr}
+}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Soirée · Flöte und Gitarre</p>
+    <h1 aria-label="Atem und Saite"><em class="atem"><span class="l" style="--i:0">A</span><span class="l" style="--i:1">t</span><span class="l" style="--i:2">e</span><span class="l" style="--i:3">m</span></em><span class="amp">&amp;</span><span class="saite">Saite</span></h1>
+    <div class="staff" id="staff" aria-hidden="true">
+      <canvas id="breathCanvas"></canvas>
+      <b class="breath">’</b>
+    </div>
+    <p class="date">Donnerstag, 19. November 2026</p>
+    <p class="lede">Vier Stücke zwischen französischem Salon und englischem Volkslied: Fauré, Ravel, Gaubert und Greensleeves, gespielt im intimen Duo.</p>
+  </div>
+</header>
+
+<section class="castband">
+  <p class="wrap cast">
+    <span class="name">Nicholas</span> <span class="instr">Flöte</span>
+    <span class="amp2">&amp;</span>
+    <span class="name">Micha</span> <span class="instr">Gitarre</span>
+  </p>
+</section>
+
+<section class="program">
+  <div class="wrap">
+    <div class="head">
+      <h2>Programm</h2>
+      <span class="total">4 Werke · ca. 15 Minuten</span>
+    </div>
+    <ol class="pieces">
+      <li class="piece">
+        <span class="no">i</span>
+        <div>
+          <span class="composer">Gabriel Fauré · 1845–1924</span>
+          <h3 class="title">Sicilienne <i>op. 78</i></h3>
+          <p class="note">Ein wiegender Tanz im 6/8-Takt, ursprünglich für Bühnenmusik entstanden und heute eines der bekanntesten Stücke des Flötenrepertoires.</p>
+        </div>
+        <span class="meta"><b>g-Moll</b>ca. 4 Min.</span>
+      </li>
+      <li class="piece">
+        <span class="no">ii</span>
+        <div>
+          <span class="composer">Maurice Ravel · 1875–1937</span>
+          <h3 class="title">Pièce en forme de Habanera</h3>
+          <p class="note">Langsamer kubanischer Rhythmus, gefiltert durch französische Eleganz. Eine schwüle, schwebende Melodie über dem charakteristischen punktierten Bass.</p>
+        </div>
+        <span class="meta"><b>1907</b>ca. 3 Min.</span>
+      </li>
+      <li class="piece">
+        <span class="no">iii</span>
+        <div>
+          <span class="composer">Philippe Gaubert · 1879–1941</span>
+          <h3 class="title">Madrigal</h3>
+          <p class="note">Gaubert war selbst Flötist und Dirigent in Paris. Sein Madrigal ist eine kurze, lyrische Liebeserklärung an das Instrument.</p>
+        </div>
+        <span class="meta"><b>1908</b>ca. 3 Min.</span>
+      </li>
+      <li class="piece">
+        <span class="no">iv</span>
+        <div>
+          <span class="composer">Traditionell · England, 16. Jh.</span>
+          <h3 class="title">Greensleeves</h3>
+          <p class="note">Die vielleicht berühmteste englische Weise der Renaissance. Hier dort, wo sie herkommt: Melodie und gezupfte Begleitung.</p>
+        </div>
+        <span class="meta"><b>Volksweise</b>ca. 3 Min.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="when">
+  <dl class="wrap">
+    <div><dt>Datum</dt><dd>Donnerstag, 19.11.2026</dd></div>
+    <div><dt>Ort</dt><dd>Nur auf Einladung</dd></div>
+    <div><dt>Besetzung</dt><dd>Flöte &amp; Gitarre</dd></div>
+  </dl>
+</section>
+
+
+<script>
+(function(){
+  var cv=document.getElementById('breathCanvas'), ctx=cv.getContext('2d');
+  var cs=getComputedStyle(document.documentElement);
+  var GOLD=cs.getPropertyValue('--brass').trim()||'#b48a45';
+  var ROSE=cs.getPropertyValue('--accent').trim()||'#b2566c';
+  function rgb(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+  var g=rgb(GOLD), r=rgb(ROSE);
+  var W=0,H=0,dpr=1;
+  function size(){dpr=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  size(); window.addEventListener('resize',size);
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Saiten
+  var N=6, strings=[];
+  for(var i=0;i<N;i++) strings.push({amp:0.4,f:1.6+i*0.35,ph:Math.random()*6});
+  function stringY(i){return H*0.58+(i-(N-1)/2)*6;}
+
+  // Atem-Partikel
+  var parts=[];
+  function emit(strength){
+    parts.push({x:-10,y:H*0.58+(Math.random()-.5)*H*0.5,vx:40+Math.random()*50*strength,
+      r:6+Math.random()*16,life:0,max:2.6+Math.random()*1.6,sway:Math.random()*6,
+      c:Math.random()<.6?g:r,a:.10+Math.random()*.12});
+  }
+
+  function draw(t,dt){
+    ctx.clearRect(0,0,W,H);
+    // Atemzyklus: ~5 s ausatmen/einatmen
+    var cyc=(t%5)/5, exhale=cyc<0.55?Math.sin(cyc/0.55*Math.PI):0;
+    if(!reduce){
+      var rate=exhale*28+1.5;
+      if(Math.random()<rate*dt) emit(exhale+.3);
+    }
+    // Partikel
+    for(var k=parts.length-1;k>=0;k--){
+      var p=parts[k]; p.life+=dt;
+      if(p.life>p.max||p.x>W+30){parts.splice(k,1);continue;}
+      p.x+=p.vx*dt; p.y+=Math.sin(p.life*1.6+p.sway)*8*dt-4*dt; p.r+=6*dt;
+      var fade=Math.sin(Math.min(p.life/p.max,1)*Math.PI);
+      var grd=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
+      grd.addColorStop(0,'rgba('+p.c[0]+','+p.c[1]+','+p.c[2]+','+(p.a*fade)+')');
+      grd.addColorStop(1,'rgba('+p.c[0]+','+p.c[1]+','+p.c[2]+',0)');
+      ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+      // Atem regt die Saiten an
+      for(var i=0;i<N;i++){ if(Math.abs(p.y-stringY(i))<p.r) strings[i].amp=Math.min(strings[i].amp+p.a*fade*dt*9,3.2); }
+    }
+    // Saiten zeichnen
+    for(var i=0;i<N;i++){
+      var s=strings[i]; s.amp+= (0.35-s.amp)*Math.min(dt*1.4,1);
+      var y0=stringY(i), seg=48;
+      var lg=ctx.createLinearGradient(0,0,W,0);
+      lg.addColorStop(0,'rgba('+g+',0)'); lg.addColorStop(.18,'rgba('+g+',.85)');
+      lg.addColorStop(.82,'rgba('+g+',.85)'); lg.addColorStop(1,'rgba('+g+',0)');
+      ctx.strokeStyle=lg; ctx.lineWidth=1; ctx.beginPath();
+      for(var j=0;j<=seg;j++){
+        var x=j/seg*W, u=j/seg;
+        var off=reduce?0:s.amp*Math.sin(Math.PI*u)*Math.sin(t*Math.PI*2*s.f*3+s.ph)
+                 +s.amp*0.35*Math.sin(Math.PI*2*u)*Math.sin(t*Math.PI*2*s.f*4.7);
+        if(j===0)ctx.moveTo(x,y0+off);else ctx.lineTo(x,y0+off);
+      }
+      ctx.stroke();
+    }
+  }
+  if(reduce){draw(0,0);window.addEventListener('resize',function(){draw(0,0);});return;}
+  var last=performance.now();
+  function loop(now){var dt=Math.min((now-last)/1000,.05);last=now;draw(now/1000,dt);requestAnimationFrame(loop);}
+  requestAnimationFrame(loop);
+  document.getElementById('staff').addEventListener('pointerdown',function(){
+    for(var i=0;i<N;i++)strings[i].amp=3.2-i*.15;
+    for(var k=0;k<18;k++)emit(1.2);
+  });
+})();
+</script>
+
+<footer>
+  <div class="wrap">
+    <span>Nicholas · Flöte &nbsp;—&nbsp; Micha · Gitarre</span>
+    <span>Atem &amp; Saite</span>
+  </div>
+</footer>
+
+</body></html>
